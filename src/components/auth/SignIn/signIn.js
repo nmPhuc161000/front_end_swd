@@ -1,7 +1,22 @@
-import React from 'react'
+import React from "react";
 
-export default function signIn() {
+export default function SignIn() {
   return (
-    <div>signIn</div>
-  )
+    <div className="content">
+      <h1>Login</h1>
+
+      <div className="group">
+        <input type="text" className="inputText" placeholder="" required />
+        <label>Username</label>
+      </div>
+
+      <div className="group">
+        <input type="password" className="inputText" placeholder="" required />
+        <label>Password</label>
+      </div>
+
+
+      <button>login</button>
+    </div>
+  );
 }
