@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+/* Vintage-style navbar */
+.NavbarItems {
+  background-color: #f4f0e6; /* Light vintage paper color */
+  border-bottom: 2px solid #b29e89; /* Vintage accent border */
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Georgia', serif;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-logo {
+  font-size: 2rem;
+  color: #3a3d40; /* Dark vintage color */
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.navbar-logo i {
+  margin-right: 10px;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-menu li {
+  margin: 0 15px;
+}
+
+.nav-links {
+  color: #3a3d40;
+  text-decoration: none;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.nav-links i {
+  margin-right: 8px;
+}
+
+.nav-links:hover {
+  color: #b29e89; /* Highlight color */
+}
+
+/* Search bar styling */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #b29e89;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.search-bar input {
+  border: none;
+  background: none;
+  outline: none;
+  font-family: 'Georgia', serif;
+  padding: 5px;
+}
+
+.search-button {
+  background-color: #b29e89;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.search-button i {
+  font-size: 1.5rem;
+}
+
+/* Hover effects */
+.search-button:hover {
+  background-color: #9b8771;
+}
+
+.nav-menu li:hover {
+  transform: scale(1.05);
+  transition: 0.3s ease;
+}
