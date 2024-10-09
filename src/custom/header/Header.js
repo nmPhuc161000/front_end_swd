@@ -26,7 +26,7 @@ class Navbar extends Component {
             </Link>
           </li>
           <li>
-            <Link to='/sign-up' className='nav-links'>
+            <Link to='/auth-page' className='nav-links'>
               <i className='material-icons'>person_add</i> Sign Up
             </Link>
           </li>
