@@ -2,7 +2,7 @@ import React from "react";
 
 export default function SignIn() {
   return (
-    <div className="content">
+    <div className="content-authPage">
       <h1>Login</h1>
 
       <div className="group">
@@ -14,8 +14,6 @@ export default function SignIn() {
         <input type="password" className="inputText" placeholder="" required />
         <label>Password</label>
       </div>
-
-
       <button>login</button>
     </div>
   );

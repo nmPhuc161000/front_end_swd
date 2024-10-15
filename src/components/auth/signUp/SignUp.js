@@ -2,8 +2,8 @@ import React from "react";
 
 export default function SignUp() {
   return (
-    <div className="content">
-      <h1>Register</h1>
+    <div className="content-authPage">
+      <h1 className="h1-signup">Register</h1>
 
       <div className="group">
         <input type="text" className="inputText" placeholder="" required />

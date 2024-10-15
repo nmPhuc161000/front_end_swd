@@ -1,0 +1,58 @@
+.detail-page {
+    width: 900px;
+    margin: auto;
+    max-width: 90vw;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.detail {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    text-align: left;
+}
+
+.detail .detail-img {
+    position: relative;
+}
+.detail .detail-img img{
+    width: 100%;
+}
+
+.detail .detail-content {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+.detail .detail-content .name {
+    font-size: xxx-large;
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+
+.detail .detail-content .price {
+    font-weight: bold;
+    font-size: x-large;
+    letter-spacing: 7px;
+    margin-bottom: 20px;
+}
+
+.detail .detail-content .buttons {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.detail .detail-content .buttons button{
+    background-color: #eee;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 20px;
+    font-family: Poppins;
+    font-size: large;
+}
+
+.detail .detail-content .description {
+    font-weight: 300;
+}

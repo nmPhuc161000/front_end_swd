@@ -38,7 +38,7 @@ export default function AuthPage() {
 
   return (
     <div className="authPage">
-      <div className="container">
+      <div className="container-auth">
         <div className="form login" id="form">
           <SignIn />
           <SignUp />

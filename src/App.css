@@ -1,0 +1,14 @@
+a {
+  text-decoration: none;
+  /* Bỏ gạch chân */
+  color: inherit;
+  /* Giữ nguyên màu chữ theo thẻ cha */
+}
+
+/* Nếu bạn muốn chọn một màu mặc định */
+a {
+  text-decoration: none;
+  /* Bỏ gạch chân */
+  color: black;
+  /* Đổi màu chữ */
+}

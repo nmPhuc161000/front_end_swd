@@ -1,0 +1,11 @@
+.home-page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: #f4f4f4;
+}
+.container-home{
+    margin: 20px;
+    width: 90%;
+}
