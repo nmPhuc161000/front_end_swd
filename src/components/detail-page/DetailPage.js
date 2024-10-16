@@ -26,6 +26,7 @@ export default function DetailPage() {
                 </div>
                 <div className='detail-content'>
                     <h1 className='name'>{itemDetail.name}</h1>
+                    <div className='full-name'>Provided by: {itemDetail.full_Name}</div>
                     <div className='price'>{itemDetail.price}</div>
                     <div className='buttons'>
                         <button>Booking</button>
@@ -33,7 +34,7 @@ export default function DetailPage() {
                     <div className='description'>$Expertly rendered by Carl Hansen & Søn, the lounge chair—first introduced in 1951 and enduring ever since—is available in oak or as a combination of oak and walnut, sourced from sustainable forestry. Choose from seat and back upholstery in a selection of leather options or in a custom fabric.</div>
                 </div>
             </div>
-            
+
         </div>
     );
 }

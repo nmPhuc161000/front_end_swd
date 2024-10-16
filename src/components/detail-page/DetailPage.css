@@ -31,7 +31,7 @@
     margin: 0 0 10px 0;
 }
 
-.detail .detail-content .price {
+.detail .detail-content .price .full-name {
     font-weight: bold;
     font-size: x-large;
     letter-spacing: 7px;
@@ -51,6 +51,7 @@
     border-radius: 20px;
     font-family: Poppins;
     font-size: large;
+    
 }
 
 .detail .detail-content .description {
