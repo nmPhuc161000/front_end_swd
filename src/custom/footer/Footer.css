@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+/* Animal platform inspired footer */
+.FooterItems {
+  background-color: #eaf4f4; /* Same light sky blue */
+  border-top: 3px solid #a2d5c6; /* Green accent */
+  padding: 20px 0;
+  text-align: center;
+  font-family: 'Georgia', serif;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-logo {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.footer-logo i {
+  margin-right: 8px;
+  font-size: 2rem;
+}
+
+.social-media {
+  margin: 10px 0;
+}
+
+.social-link {
+  margin: 0 10px;
+  color: #2c3e50;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.social-link:hover {
+  color: #a2d5c6;
+}
+
+.footer-text p {
+  color: #2c3e50;
+  margin: 5px 0;
+}
+
+.footer-text p:last-child {
+  font-size: 0.9rem;
+  color: #607d8b; /* Subtle text for copyright */
+}

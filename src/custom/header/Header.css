@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
-/* Vintage-style navbar */
+/* Animal platform inspired navbar */
 .NavbarItems {
-  background-color: #f4f0e6; /* Light vintage paper color */
-  border-bottom: 2px solid #b29e89; /* Vintage accent border */
+  background-color: #eaf4f4; /* Light sky blue, nature-inspired */
+  border-bottom: 3px solid #a2d5c6; /* Greenish accent for nature */
   padding: 10px 20px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   font-family: 'Georgia', serif;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
@@ -14,14 +14,16 @@
 
 .navbar-logo {
   font-size: 2rem;
-  color: #3a3d40; /* Dark vintage color */
+  color: #2c3e50; /* Darker tone for contrast */
   display: flex;
   align-items: center;
   font-weight: bold;
+  margin-top: 10px;
 }
 
 .navbar-logo i {
   margin-right: 10px;
+  font-size: 2.5rem;
 }
 
 .nav-menu {
@@ -29,6 +31,7 @@
   list-style: none;
   justify-content: space-between;
   align-items: center;
+  margin-top: 15px;
 }
 
 .nav-menu li {
@@ -36,7 +39,7 @@
 }
 
 .nav-links {
-  color: #3a3d40;
+  color: #2c3e50;
   text-decoration: none;
   font-size: 1.2rem;
   display: flex;
@@ -49,17 +52,21 @@
 }
 
 .nav-links:hover {
-  color: #b29e89; /* Highlight color */
+  color: #a2d5c6; /* Soft green highlight */
 }
 
 /* Search bar styling */
 .search-bar {
   display: flex;
   align-items: center;
-  background-color: #fff;
-  border: 1px solid #b29e89;
-  border-radius: 5px;
-  padding: 5px;
+  background-color: #ffffff;
+  border: 2px solid #a2d5c6;
+  border-radius: 50px;
+  padding: 10px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .search-bar input {
@@ -68,28 +75,31 @@
   outline: none;
   font-family: 'Georgia', serif;
   padding: 5px;
+  width: 100%;
+  color: #2c3e50;
 }
 
 .search-button {
-  background-color: #b29e89;
+  background-color: #a2d5c6;
   border: none;
-  padding: 5px;
+  padding: 10px;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   color: white;
+  margin-left: 10px;
 }
 
 .search-button i {
   font-size: 1.5rem;
 }
 
-/* Hover effects */
 .search-button:hover {
-  background-color: #9b8771;
+  background-color: #8bbca9;
 }
 
+/* Hover effects */
 .nav-menu li:hover {
   transform: scale(1.05);
   transition: 0.3s ease;

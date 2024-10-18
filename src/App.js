@@ -5,6 +5,7 @@ import Header from "./custom/header/Header";
 import HomePage from "./components/home/HomePage";
 import DetailPage from "./components/detail-page/DetailPage";
 // import { useEffect, useState } from "react";
+import Footer from "./custom/footer/Footer";
 
 function App() {
   const location = useLocation();
@@ -22,6 +23,7 @@ function App() {
         {/* detail page */}
         <Route path="/detail/:id" element={<DetailPage />} />
       </Routes>
+       <Footer />
     </>
   );
 }

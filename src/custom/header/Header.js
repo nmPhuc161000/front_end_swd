@@ -6,8 +6,14 @@ class Navbar extends Component {
   render() {
     return (
       <nav className='NavbarItems'>
+        <div className='search-bar'>
+          <input type='text' placeholder='Search for pets, services...' />
+          <button className='search-button'>
+            <i className='material-icons'>search</i>
+          </button>
+        </div>
         <h1 className='navbar-logo'>
-          <i className='material-icons'>local_florist</i> React
+          <i className='material-icons'>pets</i> Animal Haven
         </h1>
         <ul className='nav-menu'>
           <li>
@@ -17,7 +23,7 @@ class Navbar extends Component {
           </li>
           <li>
             <Link to='/services' className='nav-links'>
-              <i className='material-icons'>build</i> Services
+              <i className='material-icons'>nature_people</i> Services
             </Link>
           </li>
           <li>
@@ -31,12 +37,6 @@ class Navbar extends Component {
             </Link>
           </li>
         </ul>
-        <div className='search-bar'>
-          <input type='text' placeholder='Search...' />
-          <button className='search-button'>
-            <i className='material-icons'>search</i>
-          </button>
-        </div>
       </nav>
     );
   }
