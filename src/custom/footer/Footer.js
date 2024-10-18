@@ -20,7 +20,7 @@ const Footer = () => {
           </a>
         </div>
         <div className='footer-text'>
-          <p>Contact us: support@animalhaven.com</p>
+          <p>Contact us: team4@animalhaven.com</p>
           <p>&copy; 2024 Animal Haven. All rights reserved.</p>
         </div>
       </div>
