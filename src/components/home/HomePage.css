@@ -9,3 +9,10 @@
     margin: 20px;
     width: 90%;
 }
+.container-home h2{
+    width: 240px;
+}
+
+.container-home h2:hover{
+    color: #07a044;
+}

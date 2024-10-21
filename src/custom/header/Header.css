@@ -2,11 +2,11 @@
 
 /* Animal platform inspired navbar */
 .NavbarItems {
-  background-color: #eaf4f4; /* Light sky blue, nature-inspired */
+  background-color: #ffffff; /* Light sky blue, nature-inspired */
   border-bottom: 3px solid #a2d5c6; /* Greenish accent for nature */
   padding: 10px 20px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   font-family: 'Georgia', serif;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
@@ -44,6 +44,7 @@
   font-size: 1.2rem;
   display: flex;
   align-items: center;
+  justify-content: center;
   transition: color 0.3s ease;
 }
 

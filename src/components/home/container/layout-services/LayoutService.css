@@ -1,18 +1,21 @@
-.layout-service{
+.layout-services{
     width: 100%;
     height: 100%;
     background-color: white;
     border-radius: 20px;
+    padding: 20px;
+    margin: 20px 0;
 }
 
-.title-service h2{
+.title-services h2{
     margin: 0;
-    padding: 15px 0 0 20px;
+    padding: 15px 0 15px 20px;
 }
 
-.items-service{
+.items-services{
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-wrap: wrap-reverse;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
 }
