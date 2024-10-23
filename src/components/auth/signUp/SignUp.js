@@ -61,7 +61,10 @@ export default function SignUp() {
 
     try {
       // Gửi yêu cầu POST đến API
-      const response = await axios.post(`${urlApi}/api/Auth/user/register/user`, data);
+      const response = await axios.post(
+        `${urlApi}/api/Auth/user/register/user`,
+        data
+      );
       Swal.fire({
         icon: "success",
         title: "Success!",
@@ -83,7 +86,7 @@ export default function SignUp() {
 
   return (
     <>
-      <div className="regisPage">
+      <div className="regisPage" style={{ height: "100vh" }}>
         <div className="register">
           <div className="logoRegis">
             <Link to={`/`}>
@@ -129,22 +132,19 @@ export default function SignUp() {
             )}
           </div>
           <div className="signUp">
-            <button
-              type="submit"
-              onClick={() => handleSave()}
-            >
+            <button type="submit" onClick={() => handleSave()}>
               <span>{isLoading ? "Regis..." : "Regis"}</span>
             </button>
           </div>
           <div className="loginIn">
             <h6>Are you have account?</h6>
-            <Link to={`/signin`} style={{color: "#37AFE1"}}>
+            <Link to={`/signin`} style={{ color: "#37AFE1" }}>
               Login now
             </Link>
           </div>
           <div className="loginIn">
-            <h6>You want to register account for shop!</h6>
-            <Link to={`/signUpShop`} style={{color: "#37AFE1"}}>
+            <h6>Do you want to become a shop?</h6>
+            <Link to={`/signUpShop`} style={{ color: "#37AFE1" }}>
               Register now
             </Link>
           </div>

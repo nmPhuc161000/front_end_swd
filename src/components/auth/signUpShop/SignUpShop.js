@@ -42,24 +42,33 @@ export default function SignUpShop() {
 
   const handleTaxNumChange = (value) => {
     setTaxNum(value);
-  }
+  };
 
   const handleCardNameChange = (value) => {
     setCardName(value);
-  }
+  };
 
   const handleCardNumChange = (e) => {
     setCardNum(e.target.value);
-  }
+  };
 
   const handleCardProviderChange = (value) => {
     setCardProvider(value);
-  }
+  };
 
   const navigate = useNavigate();
 
   const handleSave = async () => {
-    if (!fullName || !email || !password || !phoneNo || !taxNum || !cardName || !cardNum || !cardProvider) {
+    if (
+      !fullName ||
+      !email ||
+      !password ||
+      !phoneNo ||
+      !taxNum ||
+      !cardName ||
+      !cardNum ||
+      !cardProvider
+    ) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -78,12 +87,15 @@ export default function SignUpShop() {
       TaxNumber: taxNum,
       CardName: cardName,
       CardNumber: cardNum,
-      CardProvider: cardProvider
+      CardProvider: cardProvider,
     };
 
     try {
       // Gửi yêu cầu POST đến API
-      const response = await axios.post(`${urlApi}/api/Auth/user/register/shop`, data);
+      const response = await axios.post(
+        `${urlApi}/api/Auth/user/register/shop`,
+        data
+      );
       Swal.fire({
         icon: "success",
         title: "Success!",
@@ -146,7 +158,9 @@ export default function SignUpShop() {
               <input
                 type="text"
                 placeholder="Tax Number (*)"
+                min={0}
                 onChange={(e) => handleTaxNumChange(e.target.value)}
+                required
               />
             </div>
             <div className="group-i">
@@ -159,8 +173,10 @@ export default function SignUpShop() {
             <div className="group-i">
               <input
                 type="number"
+                min={0}
                 placeholder="Card Number (*)"
                 onChange={handleCardNumChange}
+                required
               />
             </div>
             <div className="group-i">
@@ -169,7 +185,10 @@ export default function SignUpShop() {
                 placeholder="Card Provider (*)"
                 onChange={(e) => handleCardProvider(e.target.value)}
               /> */}
-              <select style={{width: "490px"}} onChange={handleCardProviderChange}>
+              <select
+                style={{ width: "490px" }}
+                onChange={handleCardProviderChange}
+              >
                 <option value="Visa">Visa</option>
                 <option value="MasterCard">Master card</option>
                 <option value="AmericanExpress">American Express</option>

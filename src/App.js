@@ -7,6 +7,7 @@ import Footer from "./custom/footer/Footer";
 import Shop from "./components/profiles/Shop/Shop";
 import SignUp from "./components/auth/signUp/SignUp";
 import SignUpShop from "./components/auth/signUpShop/SignUpShop";
+import SignIn from "./components/auth/signIn/SignIn";
 
 function App() {
   const location = useLocation();
@@ -20,7 +21,7 @@ function App() {
       {!(isLoginPage || isSignUpUser || isSignUpShop) && <Header />}
       <Routes>
         {/* sign up user and sign up shop page */}
-        <Route path="/signin"  />
+        <Route path="/signin" element={<SignIn />} />
         <Route path="/signUpUser" element={<SignUp />} />
         <Route path="/signUpShop" element={<SignUpShop />} />
         {/* home page */}
@@ -28,7 +29,7 @@ function App() {
         {/* detail page */}
         <Route path="/detail/:id" element={<DetailPage />} />
         {/* profile shop */}
-        <Route path="/shop/*" element={Shop} />
+        <Route path="/shopProfile/*" element={<Shop />} />
       </Routes>
       {!(isLoginPage || isSignUpUser || isSignUpShop) && <Footer />}
     </>

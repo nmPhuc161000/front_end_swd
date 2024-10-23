@@ -1,24 +1,26 @@
-.profile-nav {
+.shop-nav {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: white;
+    margin-bottom: 20px;
   }
   
-  .profile-nav .nav-bar {
+  .shop-nav .nav-bar {
     width: 90%;
   }
   
-  .profile-nav .nav-bar ul {
+  .shop-nav .nav-bar ul {
     display: flex;
+    list-style-type: none;
   }
   
-  .profile-nav .nav-bar ul li {
+  .shop-nav .nav-bar ul li {
     font-weight: 600;
     padding: 10px 15px;
     font-size: 15px;
-    width: 100px;
+    width: 120px;
     text-align: center;
   }
   
@@ -31,7 +33,7 @@
       color: black;
     }
   
-  .profile-nav .nav-bar ul li.active {
+  .shop-nav .nav-bar ul li.active {
     background-color: #abcdef; /* Thay đổi màu nền tại đây */
   }
   

@@ -13,44 +13,44 @@ export default function ShopNavBar() {
     <div className="shop-nav">
       <div className="nav-bar">
         <ul>
-          <li className={activeLink === "/shop/favourites" ? "active" : ""}>
+          <li className={activeLink === "/shopProfile/favourites" ? "active" : ""}>
             <Link
-              to="/shop/favourites"
-              onClick={() => handleLinkClick("/shop/favourites")}
+              to="/shopProfile/favourites"
+              onClick={() => handleLinkClick("/shopProfile/favourites")}
             >
               Favorites
             </Link>
           </li>
-          <li className={activeLink === "/shop/shop" ? "active" : ""}>
+          <li className={activeLink === "/shopProfile/shop" ? "active" : ""}>
             <Link
-              to="/shop/shop"
-              onClick={() => handleLinkClick("/shop/shop")}
+              to="/shopProfile/shop"
+              onClick={() => handleLinkClick("/shopProfile/shop")}
             >
               Shop
             </Link>
           </li>
-          <li className={activeLink === "/shop/about" ? "active" : ""}>
+          <li className={activeLink === "/shopProfile/about" ? "active" : ""}>
             <Link
-              to="/shop/about"
-              onClick={() => handleLinkClick("/shop/about")}
+              to="/shopProfile/about"
+              onClick={() => handleLinkClick("/shopProfile/about")}
             >
               About
             </Link>
           </li>
-          <li className={activeLink === "/shop/mylog/:id" ? "active" : ""}>
+          <li className={activeLink === "/shopProfile/mylog/:id" ? "active" : ""}>
             <Link
-              to="/shop/mylog/:id"
-              onClick={() => handleLinkClick("/shop/mylog/:id")}
+              to="/shopProfile/mylog/:id"
+              onClick={() => handleLinkClick("/shopProfile/mylog/:id")}
             >
               MyLog
             </Link>
           </li>
-          <li className={activeLink === "/shop/saleHistory" ? "active" : ""}>
+          <li className={activeLink === "/shopProfile/servicesHistory" ? "active" : ""}>
             <Link
-              to="/shop/saleHistory"
-              onClick={() => handleLinkClick("/shop/saleHistory")}
+              to="/shopProfile/servicesHistory"
+              onClick={() => handleLinkClick("/shopProfile/servicesHistory")}
             >
-              Sale History
+              Services History
             </Link>
           </li>
         </ul>

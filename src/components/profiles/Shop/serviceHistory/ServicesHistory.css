@@ -1,0 +1,28 @@
+.table-services {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .table-services table {
+    width: 90%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .table-services table th td {
+    text-align: center;
+  }
+  
+  .table-services table td {
+      background-color: white;
+    }
+  
+  .table-services table tbody td img {
+      width: auto;
+      height: 70px;
+  }
+  
