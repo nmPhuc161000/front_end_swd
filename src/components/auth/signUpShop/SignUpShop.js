@@ -1,16 +1,18 @@
-import React, { useState } from "react";
-import "./SignUp.css";
-import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 import axios from "axios";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import urlApi from "../../../api/configApi";
+import Swal from "sweetalert2";
 
-export default function SignUp() {
+export default function SignUpShop() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNo, setPhone] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const [taxNum, setTaxNum] = useState("");
+  const [cardName, setCardName] = useState("");
+  const [cardNum, setCardNum] = useState("");
+  const [cardProvider, setCardProvider] = useState("");
   const [inputType, setInputType] = useState("password");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -38,10 +40,26 @@ export default function SignUp() {
     setPhone(phoneNumber);
   };
 
+  const handleTaxNumChange = (value) => {
+    setTaxNum(value);
+  }
+
+  const handleCardNameChange = (value) => {
+    setCardName(value);
+  }
+
+  const handleCardNumChange = (e) => {
+    setCardNum(e.target.value);
+  }
+
+  const handleCardProviderChange = (value) => {
+    setCardProvider(value);
+  }
+
   const navigate = useNavigate();
 
   const handleSave = async () => {
-    if (!fullName || !email || !password || !phoneNo) {
+    if (!fullName || !email || !password || !phoneNo || !taxNum || !cardName || !cardNum || !cardProvider) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -57,11 +75,15 @@ export default function SignUp() {
       Email: email,
       Password: password,
       PhoneNo: phoneNo,
+      TaxNumber: taxNum,
+      CardName: cardName,
+      CardNumber: cardNum,
+      CardProvider: cardProvider
     };
 
     try {
       // Gửi yêu cầu POST đến API
-      const response = await axios.post(`${urlApi}/api/Auth/user/register/user`, data);
+      const response = await axios.post(`${urlApi}/api/Auth/user/register/shop`, data);
       Swal.fire({
         icon: "success",
         title: "Success!",
@@ -90,7 +112,7 @@ export default function SignUp() {
               <img src="/assets/logo2-Photoroom.png" alt="Logo" />
             </Link>
           </div>
-          <div className="title">Register Now!</div>
+          <div className="title">Register for shop Now!</div>
           <div className="group-regis">
             <div className="group-i">
               <input
@@ -115,12 +137,44 @@ export default function SignUp() {
             </div>
             <div className="group-i">
               <input
-                type="number"
-                placeholder="Phone (*)"
-                min={0}
-                maxLength="10"
+                type="phone"
+                placeholder="Phone number (*)"
                 onChange={handlePhoneNoChange}
               />
+            </div>
+            <div className="group-i">
+              <input
+                type="text"
+                placeholder="Tax Number (*)"
+                onChange={(e) => handleTaxNumChange(e.target.value)}
+              />
+            </div>
+            <div className="group-i">
+              <input
+                type="text"
+                placeholder="Card Name (*)"
+                onChange={(e) => handleCardNameChange(e.target.value)}
+              />
+            </div>
+            <div className="group-i">
+              <input
+                type="number"
+                placeholder="Card Number (*)"
+                onChange={handleCardNumChange}
+              />
+            </div>
+            <div className="group-i">
+              {/* <input
+                type="text"
+                placeholder="Card Provider (*)"
+                onChange={(e) => handleCardProvider(e.target.value)}
+              /> */}
+              <select style={{width: "490px"}} onChange={handleCardProviderChange}>
+                <option value="Visa">Visa</option>
+                <option value="MasterCard">Master card</option>
+                <option value="AmericanExpress">American Express</option>
+                <option value="Discovery">Discovery</option>
+              </select>
             </div>
           </div>
           <div className="Error" style={{}}>
@@ -131,21 +185,21 @@ export default function SignUp() {
           <div className="signUp">
             <button
               type="submit"
-              onClick={() => handleSave()}
+              // </div>onClick={() => handleSave()}
             >
               <span>{isLoading ? "Regis..." : "Regis"}</span>
             </button>
           </div>
           <div className="loginIn">
-            <h6>Are you have account?</h6>
-            <Link to={`/signin`} style={{color: "#37AFE1"}}>
-              Login now
+            <h6>Back to register account for user?</h6>
+            <Link to={`/signUpUser`} style={{ color: "#37AFE1" }}>
+              Register user
             </Link>
           </div>
           <div className="loginIn">
-            <h6>You want to register account for shop!</h6>
-            <Link to={`/signUpShop`} style={{color: "#37AFE1"}}>
-              Register now
+            <h6>Are you have account?</h6>
+            <Link to={`/signin`} style={{ color: "#37AFE1" }}>
+              Login now
             </Link>
           </div>
         </div>
