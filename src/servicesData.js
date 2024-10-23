@@ -1,45 +1,34 @@
 export const PetServices = [
     {
         id: 1,
-        url_Image: "https://via.placeholder.com/300x200.png?text=Service+1",
-        name: "Dog Walking",
-        full_Name: "John Doe",
-        price: "$20 per hour",
-        description: "This dog walking service provides an experienced walker who will take your dog for a one-hour walk, ensuring a fun and safe experience.",
+        url_Image: "https://via.placeholder.com/300x200.png?text=Pet+Grooming",
+        name: "Pet Grooming",
+        price: "$50",
+        full_Name:"David Wilson",
+        description: "Chăm sóc toàn diện cho thú cưng của bạn, bao gồm cắt tỉa lông, tắm rửa, vệ sinh tai và móng.",
     },
     {
         id: 2,
-        url_Image: "https://via.placeholder.com/300x200.png?text=Service+2",
-        name: "Pet Grooming",
-        full_Name: "Jane Smith",
-        price: "$50 per session",
-        description: "Comprehensive care for your pet, including hair trimming, bathing, ear and nail hygiene, as well as brushing to make your pet always clean and fragrant."
+        url_Image: "https://via.placeholder.com/300x200.png?text=Dog+Walking",
+        name: "Dog Walking",
+        price: "$20 per hour",
+        full_Name:"Janne",
+        description: "Dịch vụ dắt chó đi dạo an toàn và vui vẻ bởi những người dắt chó chuyên nghiệp.",
     },
     {
-        id: 5,
-        url_Image: "https://via.placeholder.com/300x200.png?text=Service+5",
+        id: 3,
+        url_Image: "https://via.placeholder.com/300x200.png?text=Pet+Boarding",
+        name: "Pet Boarding",
+        price: "$100 per night",
+        full_Name:"John Doe",
+        description: "Dịch vụ trông giữ thú cưng qua đêm với môi trường an toàn và thoải mái.",
+    },
+    {
+        id: 4,
+        url_Image: "https://via.placeholder.com/300x200.png?text=Pet+Training",
         name: "Pet Training",
-        full_Name: "David Wilson",
-        price: "$40 per session",
-        description: "Comprehensive care for your pet, including hair trimming, bathing, ear and nail hygiene, as well as brushing to make your pet always clean and fragrant."
-
-    },
-    {
-        id: 7,
-        url_Image: "https://via.placeholder.com/300x200.png?text=Service+7",
-        name: "Pet Photo",
-        full_Name: "Chris Lee",
         price: "$80 per session",
-        description: "Comprehensive care for your pet, including hair trimming, bathing, ear and nail hygiene, as well as brushing to make your pet always clean and fragrant."
-
-    },
-    {
-        id: 10,
-        url_Image: "https://via.placeholder.com/300x200.png?text=Service+10",
-        name: "Pet Health Checkup",
-        full_Name: "Lisa Black",
-        price: "$120 per checkup",
-        description: "Comprehensive care for your pet, including hair trimming, bathing, ear and nail hygiene, as well as brushing to make your pet always clean and fragrant."
-
+        full_Name:"Jane Smith",
+        description: "Dạy thú cưng của bạn những kỹ năng cần thiết với các chuyên gia huấn luyện có kinh nghiệm.",
     }
 ];

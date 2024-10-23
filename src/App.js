@@ -6,6 +6,8 @@ import HomePage from "./components/home/HomePage";
 import DetailPage from "./components/detail-page/DetailPage";
 // import { useEffect, useState } from "react";
 import Footer from "./custom/footer/Footer";
+import ServicesPage from "./components/services/ServicesPage";
+
 
 function App() {
   const location = useLocation();
@@ -22,8 +24,10 @@ function App() {
         <Route path="/" element={<HomePage />} />
         {/* detail page */}
         <Route path="/detail/:id" element={<DetailPage />} />
+        {/* service page */}
+        <Route path="/services" element={<ServicesPage />} />
       </Routes>
-       <Footer />
+      <Footer />
     </>
   );
 }
