@@ -37,7 +37,7 @@ class Navbar extends Component {
           </ul>
         </div>
         <div style={{ width: "160px" }}>
-          <Link to="/auth-page" className="nav-links">
+          <Link to="/signin" className="nav-links">
             <i className="material-icons">login</i> Sign In
           </Link>
         </div>

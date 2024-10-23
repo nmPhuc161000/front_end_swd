@@ -1,23 +1,28 @@
 import "./App.css";
 import { Routes, Route, useLocation } from "react-router-dom";
-import AuthPage from "./components/auth/AuthPage";
 import Header from "./custom/header/Header";
 import HomePage from "./components/home/HomePage";
 import DetailPage from "./components/detail-page/DetailPage";
 import Footer from "./custom/footer/Footer";
 import Shop from "./components/profiles/Shop/Shop";
+import SignUp from "./components/auth/signUp/SignUp";
+import SignUpShop from "./components/auth/signUpShop/SignUpShop";
 
 function App() {
   const location = useLocation();
 
-  // Kiểm tra xem đường dẫn hiện tại có phải là "/auth-page" không
-  const isAuthPage = location.pathname === "/auth-page";
+  // Kiểm tra xem đường dẫn hiện tại có phải là "/page" không
+  const isLoginPage = location.pathname === "/signin";
+  const isSignUpUser = location.pathname === "/signUpUser";
+  const isSignUpShop = location.pathname === "/signUpShop";
   return (
     <>
-      {!isAuthPage && <Header />}
+      {!(isLoginPage || isSignUpUser || isSignUpShop) && <Header />}
       <Routes>
         {/* sign up user and sign up shop page */}
-        <Route path="/auth-page" element={<AuthPage />} />
+        <Route path="/signin"  />
+        <Route path="/signUpUser" element={<SignUp />} />
+        <Route path="/signUpShop" element={<SignUpShop />} />
         {/* home page */}
         <Route path="/" element={<HomePage />} />
         {/* detail page */}
@@ -25,7 +30,7 @@ function App() {
         {/* profile shop */}
         <Route path="/shop/*" element={Shop} />
       </Routes>
-      {!isAuthPage && <Footer />}
+      {!(isLoginPage || isSignUpUser || isSignUpShop) && <Footer />}
     </>
   );
 }
