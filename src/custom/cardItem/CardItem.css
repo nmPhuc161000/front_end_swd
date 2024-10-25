@@ -17,3 +17,8 @@
   display: flex;
   justify-content: space-around;
 }
+
+.cardHome .cardInfor .cardName{
+  text-align: left;
+  overflow: hidden;
+}
