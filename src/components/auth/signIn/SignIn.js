@@ -33,7 +33,7 @@ export default function SignIn() {
     };
 
     try {
-      const response = await axios.post(`${urlApi}/api/Auth/user/login`, data, {
+      const response = await axios.post(`http://localhost:8080/api/auth/login`, data, {
         header: {
           "Content-Type": `application/json`,
           Accept: "*/*",
@@ -42,23 +42,27 @@ export default function SignIn() {
       Swal.fire({
         icon: "success",
         title: "Login success!",
-        text: response.data.message,
+        text: "login",
       });
 
-      const { newToken, role } = response.data;
-      localStorage.setItem("token", newToken.token);
+      console.log("Data: ", response);
+      
+      localStorage.setItem("token", response.data.token);
+      const token = localStorage.getItem("token");
+      console.log("Token: ", token);
+      
       // Chuyển hướng dựa trên role
-      if (role === "user") {
+      // if (role === "user") {
         navigate("/");
-      } else if (role === "shop") {
-        navigate("/shopProfile/shop");
-      }
+      // } else if (role === "shop") {
+      //   navigate("/shopProfile/shop");
+      // }
       console.log("Data: ", response);
     } catch (error) {
       Swal.fire({
         icon: "error",
         title: "Please check your input!!!",
-        text: error.response.data.message,
+        text: "faile",
       });
       console.error("An error occurred while sending the API request:", error);
     }
