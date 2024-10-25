@@ -2,8 +2,8 @@
 
 /* Animal platform inspired navbar */
 .NavbarItems {
-  background-color: #ffffff; /* Light sky blue, nature-inspired */
-  border-bottom: 3px solid #a2d5c6; /* Greenish accent for nature */
+  background-color: #ffffff;
+  border-bottom: 3px solid #a2d5c6;
   padding: 10px 20px;
   display: flex;
   justify-content: space-around;
@@ -14,7 +14,7 @@
 
 .navbar-logo {
   font-size: 2rem;
-  color: #2c3e50; /* Darker tone for contrast */
+  color: #2c3e50;
   display: flex;
   align-items: center;
   font-weight: bold;
@@ -44,7 +44,6 @@
   font-size: 1.2rem;
   display: flex;
   align-items: center;
-  justify-content: center;
   transition: color 0.3s ease;
 }
 
@@ -53,7 +52,7 @@
 }
 
 .nav-links:hover {
-  color: #a2d5c6; /* Soft green highlight */
+  color: #a2d5c6;
 }
 
 /* Search bar styling */
@@ -104,4 +103,69 @@
 .nav-menu li:hover {
   transform: scale(1.05);
   transition: 0.3s ease;
+}
+
+/* User icon and dropdown */
+.user-icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  width: 150px;
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+/* Show dropdown on hover */
+.user-icon-button:hover + .user-dropdown,
+.user-dropdown:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Updated Dropdown Item with unique Sign Out button */
+.dropdown-item {
+  padding: 14px 18px;
+  color: #2c3e50;
+  text-decoration: none;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown-item:last-child {
+  color: #ffffff;
+  background-color: #a2d5c6;
+  border-radius: 4px;
+  margin: 4px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.dropdown-item:last-child:hover {
+  background-color: #8bbca9;
 }
