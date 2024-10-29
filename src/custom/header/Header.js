@@ -60,18 +60,35 @@ class Navbar extends Component {
           </ul>
         </div>
         <div style={{ width: "160px", position: "relative" }}>
-          {isLoggedIn ? (
+          {!isLoggedIn ? (
             <div className="user-menu">
-              <button onClick={this.toggleUserMenu} className="user-icon-button">
+              <button
+                onClick={this.toggleUserMenu}
+                className="user-icon-button"
+              >
                 <i className="material-icons">account_circle</i>
               </button>
               {showUserMenu && (
                 <div className="user-dropdown">
-                  <Link to="/profile" className="dropdown-item">Profile</Link>
-                  <Link to="/cast" className="dropdown-item">Cast</Link> {/* Cast item */}
-                  <Link to="/products" className="dropdown-item">Product</Link> {/* Product link */}
-                  <Link to="/services" className="dropdown-item">Service</Link> {/* Service link */}
-                  <Link to="/user" className="dropdown-item">User</Link> {/* User.js link */}
+                  <Link to="/profile" className="dropdown-item">
+                    Profile
+                  </Link>
+                  <Link to="/cast" className="dropdown-item">
+                    Cast
+                  </Link>{" "}
+                  {/* Cast item */}
+                  <Link to="/products" className="dropdown-item">
+                    Product
+                  </Link>{" "}
+                  {/* Product link */}
+                  <Link to="/services" className="dropdown-item">
+                    Service
+                  </Link>{" "}
+                  {/* Service link */}
+                  <Link to="/user" className="dropdown-item">
+                    User
+                  </Link>{" "}
+                  {/* User.js link */}
                   <button onClick={this.handleLogout} className="dropdown-item">
                     Logout
                   </button>

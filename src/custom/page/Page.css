@@ -1,0 +1,28 @@
+.page {
+  width: 85%;
+  margin: auto;
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 25px;
+}
+
+.page .page-container {
+  width: 85%;
+  margin: auto;
+  background-color: white;
+  padding: 25px;
+  border-radius: 20px;
+}
+
+.page .page-container .page-card {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.pagination{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

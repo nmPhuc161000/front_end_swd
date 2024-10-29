@@ -31,6 +31,7 @@
 }
 
 .detail .detail-content {
+  width: 95%;
   display: block;
   unicode-bidi: isolate;
 }
@@ -41,20 +42,24 @@
   margin: 0 0 10px 0;
 }
 
-.detail .detail-content .price , .detail .detail-content .full-name {
+.detail .detail-content .price,
+.detail .detail-content .full-name {
   font-size: x-large;
   letter-spacing: 7px;
+  margin-bottom: 15px;
+}
+
+.detail .detail-content .price{
+  font-size: large;
+}
+
+.detail .detail-content .detail-buttons {
   margin-bottom: 20px;
 }
 
-.detail .detail-content .buttons {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 20px;
-}
-
-.detail .detail-content .buttons button {
-  background-color: #eee;
+.detail .detail-content .detail-buttons button {
+  width: 100%;
+  background-color: #dcd2d2;
   border: none;
   padding: 15px 20px;
   border-radius: 20px;
@@ -63,17 +68,24 @@
   cursor: pointer;
 }
 
-.detail .detail-content .description {
-  font-weight: 300;
+.detail .detail-content .detail-buttons button:hover {
+  background-color: #c1908a;
+  color: white;
 }
 
-.detail-page .more-services{
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    background-color: white;
-    border-radius: 15px;
-    padding: 20px;
+.detail .detail-content .description {
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+
+.detail-page .more-services {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 30px;
 }

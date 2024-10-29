@@ -8,12 +8,12 @@ export default function LayoutServices() {
   return (
     <div className="layout-services">
       <div className="title-services">
-        <Link>
+        <Link to={`/page-cat`}>
           <h2>Service for cat</h2>
         </Link>
       </div>
       <div className="items-services">
-        {fakeData.map((item, index) => (
+        {fakeData.slice(0, 10).map((item, index) => (
           <Link to={`/detail/${item.id}`}>
             <CardHome key={index} item={item} />
           </Link>

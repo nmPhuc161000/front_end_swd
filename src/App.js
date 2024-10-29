@@ -8,6 +8,8 @@ import Shop from "./components/profiles/Shop/Shop";
 import SignUp from "./components/auth/signUp/SignUp";
 import SignUpShop from "./components/auth/signUpShop/SignUpShop";
 import SignIn from "./components/auth/signIn/SignIn";
+import PageForCat from "./components/services-page/page-cat/PageForCat";
+import PageForDog from "./components/services-page/page-dog/PageForDog";
 
 function App() {
   const location = useLocation();
@@ -30,6 +32,10 @@ function App() {
         <Route path="/detail/:id" element={<DetailPage />} />
         {/* profile shop */}
         <Route path="/shopProfile/*" element={<Shop />} />
+        {/* page for cat */}
+        <Route path="/page-cat" element={<PageForCat />} />
+        {/* page for dog */}
+        <Route path="/page-dog" element={<PageForDog />} />
       </Routes>
       {!(isLoginPage || isSignUpUser || isSignUpShop) && <Footer />}
     </>
