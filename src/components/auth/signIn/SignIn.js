@@ -5,14 +5,14 @@ import urlApi from "../../../api/configApi";
 import Swal from "sweetalert2";
 
 export default function SignIn() {
-  const [username, setUsername] = useState("");
+  const [emali, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [inputType, setInputType] = useState("password");
 
   const handleEmailChange = (event) => {
-    setUsername(event);
+    setEmail(event);
   };
 
   const handlePasswordChange = (event) => {
@@ -28,7 +28,7 @@ export default function SignIn() {
 
   const handleSave = async () => {
     const data = {
-      username: username,
+      email: emali,
       password: password,
     };
 
