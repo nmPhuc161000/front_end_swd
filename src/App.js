@@ -10,6 +10,7 @@ import SignUpShop from "./components/auth/signUpShop/SignUpShop";
 import SignIn from "./components/auth/signIn/SignIn";
 import PageForCat from "./components/services-page/page-cat/PageForCat";
 import PageForDog from "./components/services-page/page-dog/PageForDog";
+import User from "./components/profiles/User/User";
 
 function App() {
   const location = useLocation();
@@ -32,6 +33,8 @@ function App() {
         <Route path="/detail/:id" element={<DetailPage />} />
         {/* profile shop */}
         <Route path="/shopProfile/*" element={<Shop />} />
+        {/* profile shop */}
+        <Route path="/userProfile" element={<User />} />
         {/* page for cat */}
         <Route path="/page-cat" element={<PageForCat />} />
         {/* page for dog */}

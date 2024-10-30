@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Header.css";
 
 class Navbar extends Component {
@@ -60,7 +60,7 @@ class Navbar extends Component {
           </ul>
         </div>
         <div style={{ width: "160px", position: "relative" }}>
-          {!isLoggedIn ? (
+          {isLoggedIn ? (
             <div className="user-menu">
               <button
                 onClick={this.toggleUserMenu}
@@ -70,7 +70,7 @@ class Navbar extends Component {
               </button>
               {showUserMenu && (
                 <div className="user-dropdown">
-                  <Link to="/profile" className="dropdown-item">
+                  <Link to="/userProfile" className="dropdown-item">
                     Profile
                   </Link>
                   <Link to="/cast" className="dropdown-item">
