@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import urlApi from "../../../api/configApi";
 import Swal from "sweetalert2";
+import { jwtDecode } from "jwt-decode";
+import Stack from "@mui/material/Stack";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function SignIn() {
   const [emali, setEmail] = useState("");
@@ -27,14 +30,25 @@ export default function SignIn() {
   const navigate = useNavigate();
 
   const handleSave = async () => {
+    if (!emali || !password) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please fill in all required fields!",
+      });
+      setIsLoading(false);
+      return;
+    }
     const data = {
       email: emali,
       password: password,
     };
 
+    setIsLoading(true);
+
     try {
-      const response = await axios.post(`https://localhost:7238/api/Auth/user/login`, data, {
-        header: {
+      const response = await axios.post(`${urlApi}/api/Auth/user/login`, data, {
+        headers: {
           "Content-Type": `application/json`,
           Accept: "*/*",
         },
@@ -46,25 +60,42 @@ export default function SignIn() {
       });
 
       console.log("Data: ", response);
-      
-      localStorage.setItem("token", response.data.token);
-      const token = localStorage.getItem("token");
+
+      const token = response.data.data.accessToken;
+      localStorage.setItem("token", token);
       console.log("Token: ", token);
-      
+
+      // Giải mã token để lấy thông tin role
+      const decodedToken = jwtDecode(token);
+      const role =
+        decodedToken[
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+        ]; // Giả sử 'role' là key chứa role trong token
+      console.log("decode: ", decodedToken);
+
       // Chuyển hướng dựa trên role
-      // if (role === "user") {
+      if (role === "User") {
         navigate("/");
-      // } else if (role === "shop") {
-      //   navigate("/shopProfile/shop");
-      // }
+      } else if (role === "Shop") {
+        navigate("/shopProfile/shop");
+      }
       console.log("Data: ", response);
     } catch (error) {
+      const errorMessage = JSON.parse(error.request.response).message;
       Swal.fire({
         icon: "error",
         title: "Please check your input!!!",
-        text: "faile",
+        text: errorMessage,
       });
+      setIsLoading(false);
       console.error("An error occurred while sending the API request:", error);
+    }
+  };
+
+   // Hàm xử lý khi nhấn phím Enter
+   const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleSave();
     }
   };
 
@@ -82,6 +113,7 @@ export default function SignIn() {
             type="text"
             placeholder="Email (*)"
             onChange={(e) => handleEmailChange(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
         </div>
         <div className="group-i">
@@ -89,6 +121,7 @@ export default function SignIn() {
             type={inputType}
             placeholder="Password (*)"
             onChange={(e) => handlePasswordChange(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
         </div>
 

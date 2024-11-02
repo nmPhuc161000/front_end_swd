@@ -52,8 +52,8 @@ export default function SignUpShop() {
     setCardNum(e.target.value);
   };
 
-  const handleCardProviderChange = (value) => {
-    setCardProvider(value);
+  const handleCardProviderChange = (event) => {
+    setCardProvider(event.target.value);
   };
 
   const navigate = useNavigate();
@@ -75,6 +75,7 @@ export default function SignUpShop() {
         text: "Please fill in all required fields!",
       });
       setIsLoading(false);
+
       return;
     }
 
@@ -89,20 +90,72 @@ export default function SignUpShop() {
       CardNumber: cardNum,
       CardProvider: cardProvider,
     };
-
+    console.log(data);
     try {
       // Gửi yêu cầu POST đến API
       const response = await axios.post(
         `${urlApi}/api/Auth/user/register/shop`,
-        data
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Accept: "*/*",
+          },
+        }
       );
+
       Swal.fire({
         icon: "success",
         title: "Success!",
         text: response.data.message,
+        input: "text", // Ô input để nhập OTP
+        inputPlaceholder: "Enter your OTP", // Placeholder cho ô input
+        inputAttributes: {
+          maxlength: 6, // Giới hạn ký tự OTP, ví dụ: 6 ký tự
+          autocapitalize: "off",
+          autocorrect: "off",
+        },
+        showCancelButton: true, // Hiển thị nút hủy nếu cần
+        confirmButtonText: "Submit OTP",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const otpCode = result.value;
+
+          // Gọi API để xác thực OTP
+          try {
+            const otpResponse = await axios.post(
+              `${urlApi}/api/Auth/user/otp/verify`,
+              {
+                otp: otpCode,
+                email: email, // Thêm các dữ liệu cần thiết, ví dụ: email
+              },
+              {
+                headers: {
+                  "Content-Type": `application/json`,
+                  Accept: "application/json, text/plain, */*",
+                },
+              }
+            );
+            console.log("abc: ", otpResponse.data);
+
+            Swal.fire({
+              icon: "success",
+              title: "OTP Verified!",
+              text: otpResponse.data.message,
+            });
+            navigate("/signin");
+          } catch (error) {
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: "Failed to verify OTP. Please try again.",
+            });
+            console.error("Error verifying OTP:", error);
+          }
+        }
       });
+
       console.log(response.data);
-      navigate("/login");
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -112,6 +165,13 @@ export default function SignUpShop() {
       // Xử lý lỗi
       console.error("Đã có lỗi xảy ra khi gửi yêu cầu API:", error);
       setIsLoading(false);
+    }
+  };
+
+   // Hàm xử lý khi nhấn phím Enter
+   const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleSave();
     }
   };
 
@@ -131,6 +191,7 @@ export default function SignUpShop() {
                 type="text"
                 placeholder="Full name (*)"
                 onChange={(e) => handleFullNameChange(e.target.value)}
+                onKeyDown={handleKeyDown}
               />
             </div>
             <div className="group-i">
@@ -138,6 +199,7 @@ export default function SignUpShop() {
                 type="text"
                 placeholder="Email (*)"
                 onChange={(e) => handleEmailChange(e.target.value)}
+                onKeyDown={handleKeyDown}
               />
             </div>
             <div className="group-i">
@@ -145,6 +207,7 @@ export default function SignUpShop() {
                 type={inputType}
                 placeholder="Password (*)"
                 onChange={(e) => handlePasswordChange(e.target.value)}
+                onKeyDown={handleKeyDown}
               />
             </div>
             <div className="group-i">
@@ -152,6 +215,7 @@ export default function SignUpShop() {
                 type="phone"
                 placeholder="Phone number (*)"
                 onChange={handlePhoneNoChange}
+                onKeyDown={handleKeyDown}
               />
             </div>
             <div className="group-i">
@@ -161,6 +225,7 @@ export default function SignUpShop() {
                 min={0}
                 onChange={(e) => handleTaxNumChange(e.target.value)}
                 required
+                onKeyDown={handleKeyDown}
               />
             </div>
             <div className="group-i">
@@ -168,6 +233,7 @@ export default function SignUpShop() {
                 type="text"
                 placeholder="Card Name (*)"
                 onChange={(e) => handleCardNameChange(e.target.value)}
+                onKeyDown={handleKeyDown}
               />
             </div>
             <div className="group-i">
@@ -177,6 +243,7 @@ export default function SignUpShop() {
                 placeholder="Card Number (*)"
                 onChange={handleCardNumChange}
                 required
+                onKeyDown={handleKeyDown}
               />
             </div>
             <div className="group-i">
@@ -202,10 +269,7 @@ export default function SignUpShop() {
             )}
           </div>
           <div className="signUp">
-            <button
-              type="submit"
-              // </div>onClick={() => handleSave()}
-            >
+            <button type="submit" onClick={() => handleSave()}>
               <span>{isLoading ? "Regis..." : "Regis"}</span>
             </button>
           </div>

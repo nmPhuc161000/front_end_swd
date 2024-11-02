@@ -1,3 +1,5 @@
-const urlApi = 'https://petserviceplatform-dpgyc0c3fcg9dtc7.southeastasia-01.azurewebsites.net';
+
+
+const urlApi = 'https://localhost:7238';
 
 export default urlApi;
