@@ -12,7 +12,7 @@ export const Page = ({ items }) => {
   // Tính toán các items cho trang hiện tại
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = items?.slice(indexOfFirstItem, indexOfLastItem);
 
   // Xử lý khi chuyển trang
   const handlePageChange = (event, value) => {
@@ -23,7 +23,7 @@ export const Page = ({ items }) => {
     <div className="page">
       <div className="page-container">
         <div className="page-card">
-          {currentItems.map((item, index) => (
+          {currentItems && currentItems.map((item, index) => (
             <Link key={index} to={`/detail/${item.id}`}>
               <CardHome item={item} />
             </Link>
@@ -32,7 +32,7 @@ export const Page = ({ items }) => {
         <div className="pagination">
           <Stack spacing={2}>
             <Pagination
-              count={Math.ceil(items.length / itemsPerPage)} // Số lượng trang
+              count={Math.ceil(items?.length / itemsPerPage)} // Số lượng trang
               page={currentPage}
               onChange={handlePageChange}
               color="secondary"

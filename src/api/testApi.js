@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: 'https://localhost:7238',
+  baseURL: 'https://petserviceplatform-dpgyc0c3fcg9dtc7.southeastasia-01.azurewebsites.net',
   timeout: 10000, // Thời gian timeout 10 giây
 });
 

@@ -7,17 +7,18 @@ import urlApi from "../../../api/configApi";
 import { getListServices } from "../../../api/testApi";
 
 export default function PageForDog() {
-  const data = fakeData;
-  console.log(data);
-
-  const [itemDog, setItemDog] = useState("");
+  const [itemDog, setItemDog] = useState(null);
 
   useEffect(() => {
     const data = async () => {
       try {
         const response = await getListServices();
-        setItemDog(response.data);
-        console.log(response.data.item);
+        // Lọc dữ liệu để chỉ giữ các item có type là "Dog"
+        const dogItems = response.data.items.filter(
+          (item) => item.type === "Dog"
+        );
+        setItemDog(dogItems);
+        console.log(dogItems);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -27,7 +28,7 @@ export default function PageForDog() {
   return (
     <div className="page-dog">
       <div className="title">Services for dog</div>
-      <Page items={data} />
+      <Page items={itemDog} />
     </div>
   );
 }

@@ -8,14 +8,14 @@ import axios from "axios";
 import { getListServices } from "../../../../api/testApi";
 
 export default function LayoutServices() {
-  const [itemCat, setItemCat] = useState("");
+  const [itemCat, setItemCat] = useState(null);
 
   useEffect(() => {
     const data = async () => {
       try {
         const response = await getListServices();
-        setItemCat(response.data);
-        console.log(response.data.item);
+        setItemCat(response.data.items);
+        console.log(response.data.items);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -30,11 +30,15 @@ export default function LayoutServices() {
         </Link>
       </div>
       <div className="items-services">
-        {fakeData.slice(0, 10).map((item, index) => (
-          <Link to={`/detail/${item.id}`}>
-            <CardHome key={index} item={item} />
-          </Link>
-        ))}
+        {itemCat &&
+          itemCat
+            .filter((item) => item.type === "Cat")
+            .slice(0, 10)
+            .map((item, index) => (
+              <Link to={`/detail/${item.id}`}>
+                <CardHome key={index} item={item} />
+              </Link>
+            ))}
       </div>
     </div>
   );
