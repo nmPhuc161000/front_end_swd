@@ -15,7 +15,7 @@ export default function PageForCat() {
           (item) => item.type === "Cat"
         );
         setItemCat(catItems);
-        console.log(catItems);
+        // console.log(catItems);
       } catch (error) {
         console.error("Error fetching data:", error);
       }

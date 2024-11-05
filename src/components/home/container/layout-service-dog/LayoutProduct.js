@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./LayoutProduct.css";
-import { fakeData } from "../../../../fakeData";
 import { CardHome } from "../../../../custom/cardItem/CardItem";
 import { Link } from "react-router-dom";
-import urlApi from "../../../../api/configApi";
-import axios from "axios";
 import { getListServices } from "../../../../api/testApi";
 
 export default function LayoutProduct() {
@@ -15,7 +12,7 @@ export default function LayoutProduct() {
       try {
         const response = await getListServices();
         setItemDog(response.data.items);
-        console.log(response.data.items);
+        // console.log(response.data.items);
       } catch (error) {
         console.error("Error fetching data:", error);
       }

@@ -13,14 +13,6 @@ export default function ShopNavBar() {
     <div className="shop-nav">
       <div className="nav-bar">
         <ul>
-          <li className={activeLink === "/shopProfile/favourites" ? "active" : ""}>
-            <Link
-              to="/shopProfile/favourites"
-              onClick={() => handleLinkClick("/shopProfile/favourites")}
-            >
-              Favorites
-            </Link>
-          </li>
           <li className={activeLink === "/shopProfile/shop" ? "active" : ""}>
             <Link
               to="/shopProfile/shop"

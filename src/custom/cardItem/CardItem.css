@@ -22,6 +22,8 @@
 }
 
 .cardHome .cardInfor .cardName{
+  width: 115px;
   text-align: left;
-  overflow: hidden;
+  text-overflow: ellipsis; 
+  overflow: hidden; 
 }

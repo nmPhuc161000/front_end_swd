@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./PageForDog.css";
-import { fakeData } from "../../../fakeData";
 import { Page } from "../../../custom/page/Page";
-import axios from "axios";
-import urlApi from "../../../api/configApi";
 import { getListServices } from "../../../api/testApi";
 
 export default function PageForDog() {
@@ -18,7 +15,7 @@ export default function PageForDog() {
           (item) => item.type === "Dog"
         );
         setItemDog(dogItems);
-        console.log(dogItems);
+        // console.log(dogItems);
       } catch (error) {
         console.error("Error fetching data:", error);
       }

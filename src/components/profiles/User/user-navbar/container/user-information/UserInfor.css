@@ -1,0 +1,76 @@
+.profile-box {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+.profile-box .title {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.profile-box .profile-content {
+  display: flex;
+  gap: 20px;
+}
+
+.profile-box .profile-content .profile-image {
+  text-align: center;
+}
+
+.profile-box .profile-content .profile-image .avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.profile-box .profile-content .profile-image .change-image {
+  display: block;
+  padding: 5px 10px;
+  background-color: #ddd;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.profile-box .profile-content .form {
+  flex: 1;
+  padding-left: 50px;
+}
+
+.profile-box .profile-content .form .field-group {
+  margin-bottom: 15px;
+}
+
+.profile-box .profile-content .form .field-group .input {
+  width: 90%; /* Hoặc kích thước mong muốn */
+  display: block;
+  margin-top: 5px; /* Khoảng cách giữa label và input */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+
+.profile-box .profile-content .form .field-group .textarea {
+  width: 86%; /* Hoặc kích thước mong muốn */
+  display: block;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  resize: none;
+  height: 80px;
+}
+
+.profile-box .profile-content .form .update-button {
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #6c63ff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}

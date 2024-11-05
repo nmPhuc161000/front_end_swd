@@ -1,6 +1,6 @@
 import React from 'react'
 import "./CardItem.css";
-export const CardHome = ({ item }) => {
+export const CardHome = ({ item, fullName }) => {
 
   return (
     <div className="cardHome">
@@ -12,7 +12,7 @@ export const CardHome = ({ item }) => {
           <div>
             <strong>{item.title}</strong>
           </div>
-          <div>Shop <strong>{item.createdByUser?.fullName}</strong></div>
+          <div>Shop <strong>{item.createdByUser?.fullName || fullName}</strong></div>
         </div>
         <div className="cardPrice">
           <div>

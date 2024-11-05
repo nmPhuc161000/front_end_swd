@@ -76,7 +76,7 @@ export default function SignIn() {
       // Chuyển hướng dựa trên role
       if (role === "User") {
         navigate("/");
-      } else if (role === "Shop") {
+      } else if (role === "Staff") {
         navigate("/shopProfile/shop");
       }
       console.log("Data: ", response);
