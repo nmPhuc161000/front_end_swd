@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import urlApi from "../../../api/configApi";
 import Swal from "sweetalert2";
+import { signUpShop } from "../../../api/testApi";
 
 export default function SignUpShop() {
   const [fullName, setFullName] = useState("");
@@ -12,7 +13,7 @@ export default function SignUpShop() {
   const [taxNum, setTaxNum] = useState("");
   const [cardName, setCardName] = useState("");
   const [cardNum, setCardNum] = useState("");
-  const [cardProvider, setCardProvider] = useState("");
+  const [cardProvider, setCardProvider] = useState("Visa");
   const [inputType, setInputType] = useState("password");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -75,7 +76,6 @@ export default function SignUpShop() {
         text: "Please fill in all required fields!",
       });
       setIsLoading(false);
-
       return;
     }
 
@@ -90,86 +90,80 @@ export default function SignUpShop() {
       CardNumber: cardNum,
       CardProvider: cardProvider,
     };
-    console.log(data);
+
     try {
-      // Gửi yêu cầu POST đến API
-      const response = await axios.post(
-        `${urlApi}/api/Auth/user/register/shop`,
-        data,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Accept: "*/*",
+      const response = await signUpShop(data);
+
+      if (response && response.data) {
+        // Kiểm tra response và response.data
+        Swal.fire({
+          icon: "success",
+          title: "Success!",
+          text: response.data.message,
+          input: "text", // Ô input để nhập OTP
+          inputPlaceholder: "Enter your OTP",
+          inputAttributes: {
+            maxlength: 6,
+            autocapitalize: "off",
+            autocorrect: "off",
           },
-        }
-      );
+          showCancelButton: true,
+          confirmButtonText: "Submit OTP",
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            const otpCode = result.value;
 
-      Swal.fire({
-        icon: "success",
-        title: "Success!",
-        text: response.data.message,
-        input: "text", // Ô input để nhập OTP
-        inputPlaceholder: "Enter your OTP", // Placeholder cho ô input
-        inputAttributes: {
-          maxlength: 6, // Giới hạn ký tự OTP, ví dụ: 6 ký tự
-          autocapitalize: "off",
-          autocorrect: "off",
-        },
-        showCancelButton: true, // Hiển thị nút hủy nếu cần
-        confirmButtonText: "Submit OTP",
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          const otpCode = result.value;
+            try {
+              const otpResponse = await axios.post(
+                `${urlApi}/api/Auth/user/otp/verify`,
+                { otp: otpCode, email },
+                {
+                  headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json, text/plain, */*",
+                  },
+                }
+              );
 
-          // Gọi API để xác thực OTP
-          try {
-            const otpResponse = await axios.post(
-              `${urlApi}/api/Auth/user/otp/verify`,
-              {
-                otp: otpCode,
-                email: email, // Thêm các dữ liệu cần thiết, ví dụ: email
-              },
-              {
-                headers: {
-                  "Content-Type": `application/json`,
-                  Accept: "application/json, text/plain, */*",
-                },
+              if (otpResponse && otpResponse.data) {
+                // Kiểm tra otpResponse và otpResponse.data
+                Swal.fire({
+                  icon: "success",
+                  title: "OTP Verified!",
+                  text: otpResponse.data.message,
+                });
+                navigate("/signin");
               }
-            );
-            console.log("abc: ", otpResponse.data);
-
-            Swal.fire({
-              icon: "success",
-              title: "OTP Verified!",
-              text: otpResponse.data.message,
-            });
-            navigate("/signin");
-          } catch (error) {
-            Swal.fire({
-              icon: "error",
-              title: "Error",
-              text: "Failed to verify OTP. Please try again.",
-            });
-            console.error("Error verifying OTP:", error);
+            } catch (error) {
+              Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "Failed to verify OTP. Please try again.",
+              });
+              console.error("Error verifying OTP:", error);
+            }
           }
-        }
-      });
-
-      console.log(response.data);
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Unexpected response format from the server.",
+        });
+      }
     } catch (error) {
       Swal.fire({
         icon: "error",
         title: "Please check your input!!!",
-        text: error.response.data.message,
+        text: error.response?.data?.message || "An error occurred",
       });
-      // Xử lý lỗi
-      console.error("Đã có lỗi xảy ra khi gửi yêu cầu API:", error);
+      console.error("Error sending API request:", error);
       setIsLoading(false);
     }
   };
 
-   // Hàm xử lý khi nhấn phím Enter
-   const handleKeyDown = (event) => {
+  // Hàm xử lý khi nhấn phím Enter
+  const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       handleSave();
     }
@@ -255,7 +249,11 @@ export default function SignUpShop() {
               <select
                 style={{ width: "490px" }}
                 onChange={handleCardProviderChange}
+                value={cardProvider}
               >
+                <option value="" disabled>
+                  Choose Card Provider
+                </option>
                 <option value="Visa">Visa</option>
                 <option value="MasterCard">Master card</option>
                 <option value="AmericanExpress">American Express</option>

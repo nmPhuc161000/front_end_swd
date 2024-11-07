@@ -74,7 +74,7 @@ export default function SignUp() {
       Swal.fire({
         icon: "success",
         title: "Success!",
-        text: response.data.message,
+        text: response?.data?.message,
         input: "text", // Ô input để nhập OTP
         inputPlaceholder: "Enter your OTP", // Placeholder cho ô input
         inputAttributes: {
@@ -108,7 +108,7 @@ export default function SignUp() {
             Swal.fire({
               icon: "success",
               title: "OTP Verified!",
-              text: otpResponse.data.message,
+              text: otpResponse?.data?.message,
             });
             navigate("/signin");
           } catch (error) {
@@ -127,7 +127,7 @@ export default function SignUp() {
       Swal.fire({
         icon: "error",
         title: "Please check your input!!!",
-        text: error.response.data.message,
+        text: error.response.data.title,
       });
       // Xử lý lỗi
       console.error("Đã có lỗi xảy ra khi gửi yêu cầu API:", error);

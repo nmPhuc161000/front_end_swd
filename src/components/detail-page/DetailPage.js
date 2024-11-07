@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./DetailPage.css";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import MoreService from "./more-services/MoreService";
 import { getServiceById } from "../../api/testApi";
 
 export default function DetailPage() {
   const { id } = useParams();
   const [itemDetail, setItemDetail] = useState(null);
-  const moreData = itemDetail && itemDetail.createdByUser ? itemDetail.createdByUser : "";
+  const moreData =
+    itemDetail && itemDetail.createdByUser ? itemDetail.createdByUser : "";
 
   useEffect(() => {
     const data = async () => {
@@ -41,7 +42,9 @@ export default function DetailPage() {
           </div>
           <div className="description">Mô tả: {itemDetail.description}</div>
           <div className="detail-buttons">
-            <button>Booking now</button>
+            <Link to={"/booking-page"}>
+              <button>Booking now</button>
+            </Link>
           </div>
         </div>
       </div>

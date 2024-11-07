@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "./CreateService.css";
-import urlApi from "../../../../../api/configApi";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { getSubCatergoy, postCreateService } from "../../../../../api/testApi";
+import Swal from "sweetalert2";
 
 export default function CreateService() {
   const [name, setName] = useState("");
-  const [categoryName, setCategoryName] = useState("");
+  const [subCategory, setSubCategory] = useState("");
+  const [type, setType] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [imageFile, setImageFile] = useState("");
-  const [imgUrl, setImgUrl] = useState([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -22,6 +22,8 @@ export default function CreateService() {
   const [imgName, setImgName] = useState("No selected image.");
   const [remainingCharacters, setRemainingCharacters] = useState(60);
   const [categories, setCategories] = useState([]);
+  const userId = localStorage.getItem("userId") || "";
+
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
@@ -33,9 +35,14 @@ export default function CreateService() {
     }
   };
 
-  const handleCategoryName = (event) => {
+  const handlesubCategory = (event) => {
     const selectedOption = event.target.value;
-    setCategoryName(selectedOption);
+    setSubCategory(selectedOption);
+  };
+
+  const handleType = (event) => {
+    const selectedOption = event.target.value;
+    setType(selectedOption);
   };
 
   const handleDescription = (value) => {
@@ -74,63 +81,44 @@ export default function CreateService() {
     e.preventDefault();
   };
 
-  //   useEffect(() => {
-  //     listAll(ref(imgDb, "")).then(async (imgs) => {
-  //       const urls = await Promise.all(
-  //         imgs.items.map(async (val) => {
-  //           const url = await getDownloadURL(val);
-  //           return url;
-  //         })
-  //       );
-  //       setImgUrl(urls);
-  //     });
-  //   }, []);
-
   const handleSave = async () => {
-    if (!name || !categoryName || !description || !price) {
+    if (!name || !subCategory || !description || !price || !type) {
       alert("Vui lòng điền đầy đủ thông tin.");
       return;
     }
     setIsLoading(true);
-    // const imgRef = ref(imgDb, `/${v4()}`);
-    // const snapshot = await uploadBytes(imgRef, imageFile);
-    // const url = await getDownloadURL(snapshot.ref);
 
     const formData = new FormData();
-    formData.append("Name", name);
-    formData.append("Category_Name", categoryName);
+    formData.append("UserId", userId);
+    formData.append("Title", name);
+    formData.append("SubCategoryId", subCategory);
+    formData.append("Type", type);
     formData.append("Description", description);
     formData.append("Price", price);
-    //formData.append("Url_Image", url); // Không cần thêm file và fileName
+    formData.append("ThumbNail", imageFile);
 
     try {
       // Gửi yêu cầu POST đến API
-      const response = await axios.post(
-        `${urlApi}/api/Artwork/create`,
-        formData,
-        {
-          headers: {
-            "Content-Type": `application/json`,
-            Accept: "*/*",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      //Reset input after create successful
+      const response = await postCreateService(formData, token);
+
       setName("");
-      setCategoryName("");
+      setSubCategory("");
       setDescription("");
       setPrice("");
+      setType("");
       setImageFile("");
       setIsLoading(false);
+
       console.log("url", response.data);
-      alert("Tạo thành công");
-      navigate("/profile/shop");
+      Swal.fire({
+        icon: "success",
+        title: "Successfully!",
+        text: "Create service successfully!",
+      });
+      navigate("/shopProfile/shop");
       setIsPopupOpen(false);
-      //   onCreate(response);
     } catch (error) {
       // Xử lý lỗi
-      //   console.log("URL", url);
       alert("Hãy kiểm tra lại thông tin nhập vào!");
       console.error("Đã có lỗi xảy ra khi gửi yêu cầu API:", error);
       console.log(formData);
@@ -138,29 +126,29 @@ export default function CreateService() {
     }
   };
 
-  // useEffect(() => {
-  //   const isUserLoggedIn = token !== null;
-  //   setIsLogin(isUserLoggedIn);
+  useEffect(() => {
+    const isUserLoggedIn = token !== null;
+    setIsLogin(isUserLoggedIn);
 
-  //   // Redirect to login if not logged in
-  //   if (!isUserLoggedIn) {
-  //     navigate("/login");
-  //   }
-  // }, [token, navigate]);
+    // Redirect to login if not logged in
+    if (!isUserLoggedIn) {
+      navigate("/login");
+    }
+  }, [token, navigate]);
 
   useEffect(() => {
     const categoriesData = async () => {
       try {
-        const response = await axios.get(
-          `${urlApi}/api/Category/get-all-category`
-        );
-        setCategories(response.data);
+        const response = await getSubCatergoy();
+        console.log(response.data);
+        setCategories(response.data.data);
       } catch (error) {
         console.error(error);
       }
     };
     categoriesData();
   }, []);
+
   return (
     <div className="createart">
       {isLogin && (
@@ -242,10 +230,6 @@ export default function CreateService() {
                           alignItems: "center",
                         }}
                       >
-                        {/* <BackupIcon
-                          sx={{ fontSize: 40 }}
-                          style={{ color: "#1475cf" }}
-                        /> */}
                         <i
                           className="material-icons"
                           style={{ color: "#1475cf", fontSize: "40px" }}
@@ -261,7 +245,7 @@ export default function CreateService() {
                 <section
                   style={{
                     width: "350px",
-                    height: "250px",
+                    height: "265px",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-around",
@@ -289,8 +273,8 @@ export default function CreateService() {
                     <Select
                       labelId="demo-simple-select-helper-label"
                       id="demo-simple-select-helper"
-                      value={categoryName}
-                      onChange={handleCategoryName}
+                      value={subCategory}
+                      onChange={handlesubCategory}
                       label="Category *"
                       style={{ borderRadius: "10px" }}
                       MenuProps={{
@@ -301,22 +285,54 @@ export default function CreateService() {
                         },
                       }}
                     >
-                      {categories.map((category) => (
-                        <MenuItem value={`${category.name}`}>
-                          {category.name}
-                        </MenuItem>
-                      ))}
+                      <MenuItem value={""}></MenuItem>
+                      {Array.isArray(categories) &&
+                        categories
+                          .filter((category) => category.status === 1)
+                          .map((category) => (
+                            <MenuItem value={`${category.subId}`}>
+                              {category.subName}
+                            </MenuItem>
+                          ))}
+                    </Select>
+                  </FormControl>
+
+                  <FormControl
+                    sx={{ m: 1, minWidth: 120 }}
+                    style={{ margin: "0 0 5px 0", width: "100%" }}
+                  >
+                    <InputLabel id="demo-simple-select-helper-label">
+                      Type *
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-helper-label"
+                      id="demo-simple-select-helper"
+                      value={type}
+                      onChange={handleType}
+                      label="Type *"
+                      style={{ borderRadius: "10px" }}
+                      MenuProps={{
+                        PaperProps: {
+                          style: {
+                            maxHeight: 250, // Đặt giới hạn chiều cao tại đây
+                          },
+                        },
+                      }}
+                    >
+                      <MenuItem value={""}></MenuItem>
+                      <MenuItem value={"Dog"}>Dog</MenuItem>
+                      <MenuItem value={"Cat"}>Cat</MenuItem>
                     </Select>
                   </FormControl>
                   <div className="popupInput">
                     <input
                       type="number"
-                      placeholder="Enter price of services ($)"
+                      placeholder="Enter price of services (VNĐ)"
                       onChange={(e) => handlePrice(e.target.value)}
                       min="0"
                     />
                     <span style={{ fontWeight: "600", color: "#838592" }}>
-                      $
+                      VNĐ
                     </span>
                   </div>
                 </section>
@@ -355,17 +371,8 @@ export default function CreateService() {
                     marginTop: "20px",
                   }}
                 >
-                  {/* <AttachFileIcon style={{ color: "#1475cf" }} /> */}
                   <i className="material-icons">attach_file</i>
                   <span>{imgName}</span>
-                  {/* <DeleteIcon
-                    onClick={() => {
-                      setImgName("No selected image.");
-                      setImageUrl(null);
-                      setImageFile(null);
-                    }}
-                    style={{ color: "#1475cf" }}
-                  /> */}
                   <i
                     className="material-icons"
                     onClick={() => {

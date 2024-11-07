@@ -4,32 +4,26 @@ import urlApi from "../../../../api/configApi";
 import CreateService from "./create-services/CreateService";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { getListServicesByUserId } from "../../../../api/testApi";
 
 export default function ShopService() {
   const [itemData, setItemData] = useState([]);
   const [isCreate, setIsCreate] = useState(false);
+  const userId = localStorage.getItem("userId") || "";
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const artData = async () => {
+    const serviceData = async () => {
       try {
-        const response = await axios.get(
-          `${urlApi}/api/Artwork/get-by-userId`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              accept: "*/*",
-            },
-          }
-        );
-        setItemData(response.data);
-        console.log("Data from API: ", response.data);
+        const response = await getListServicesByUserId(userId, token);
+        setItemData(response.data.data);
+        console.log("Data from API: ", response.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
-    artData();
+    serviceData();
   }, [isCreate]);
 
   const handleCreateArt = () => {
@@ -86,7 +80,7 @@ export default function ShopService() {
                       <div className="cardName">
                         <div>
                           <span style={{ fontWeight: "bold" }}>
-                            {item.name}
+                            {item.title}
                           </span>
                         </div>
                         <div>
@@ -98,7 +92,7 @@ export default function ShopService() {
                       </div>
                       <div className="cardPrice">
                         <div>
-                          <strong>${item.price}</strong>
+                          <strong>{item.price}VNĐ</strong>
                         </div>
                       </div>
                     </div>

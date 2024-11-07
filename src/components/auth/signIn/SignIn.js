@@ -71,7 +71,16 @@ export default function SignIn() {
         decodedToken[
           "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
         ]; // Giả sử 'role' là key chứa role trong token
+      localStorage.setItem("role", role);
       console.log("decode: ", decodedToken);
+
+      const full_name =
+        decodedToken[
+          "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
+        ];
+      localStorage.setItem("full_name", full_name);
+
+      localStorage.setItem("userId", decodedToken.id);
 
       // Chuyển hướng dựa trên role
       if (role === "User") {
@@ -92,8 +101,8 @@ export default function SignIn() {
     }
   };
 
-   // Hàm xử lý khi nhấn phím Enter
-   const handleKeyDown = (event) => {
+  // Hàm xử lý khi nhấn phím Enter
+  const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       handleSave();
     }

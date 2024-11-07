@@ -104,7 +104,9 @@
   transform: scale(1.05);
   transition: 0.3s ease;
 }
-
+.user-menu{
+  width: 180px;
+}
 /* User icon and dropdown */
 .user-icon-button {
   background: none;
@@ -137,9 +139,8 @@
   transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
 }
 
-/* Show dropdown on hover */
-.user-icon-button:hover + .user-dropdown,
-.user-dropdown:hover {
+/* Khi showUserMenu là true, hiển thị dropdown */
+.user-menu .user-dropdown {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);

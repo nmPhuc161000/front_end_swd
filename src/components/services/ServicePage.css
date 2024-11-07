@@ -1,26 +1,6 @@
-.service-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.service-container {
-    width: 80%;
-    height: 100%;
-    background-color: white;
-    border-radius: 20px;
-    padding: 20px;
-    margin: 20px 0;
-}
-
 .title {
-    margin: 0;
+    text-align: center;
     padding: 15px 0 15px 20px;
-}
-
-.service-list {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
+    font-size: xx-large;
+    font-weight: bold;
 }
