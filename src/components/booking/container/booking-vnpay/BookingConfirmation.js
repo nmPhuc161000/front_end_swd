@@ -65,7 +65,8 @@ export default function BookingConfirmation() {
       console.log(response.data);
       // Kiểm tra nếu response.data có URL hợp lệ
       if (response.data && typeof response.data === "string") {
-        window.open(response.data, "_blank");
+        // window.open(response.data, "_blank");
+        window.open(response.data, "_self");
       } else {
         console.error("Response data does not contain a valid URL.");
       }
@@ -73,37 +74,6 @@ export default function BookingConfirmation() {
       console.error("An error occurred while sending the API request:", error);
     }
   };
-
-  useEffect(() => {
-  const fetchPaymentStatus = async () => {
-    try {
-      // Lấy dữ liệu từ API trả về kết quả thanh toán
-      const response = await axios.get(
-        "http://localhost:3000/api/Booking/payment-return",
-        {
-          params: new URLSearchParams(location.search), // Lấy query params từ URL
-        }
-      );
-
-      // Kiểm tra mã trạng thái VNPay
-      if (response.data && response.data.vnPayResponseCode === "00") {
-        setPaymentStatus("success"); // Cập nhật trạng thái thành công nếu mã là "00"
-        navigation("/")
-      } else {
-        setPaymentStatus("failure"); // Nếu không thành công, cập nhật trạng thái thất bại
-      }
-
-      console.log("Payment Status Response:", response);
-    } catch (error) {
-      console.error("Error checking payment status:", error);
-      setPaymentStatus("failure"); // Nếu có lỗi, cập nhật trạng thái thất bại
-    }
-  };
-
-  // Gọi hàm kiểm tra trạng thái thanh toán khi component mount
-  fetchPaymentStatus();
-}, [location.search]);
-
 
   return (
     <div className="booking-confirm">

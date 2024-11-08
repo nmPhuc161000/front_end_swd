@@ -18,6 +18,7 @@ import { AuthProvider } from "./authorize/AuthContext";
 import ProtectedRoute from "./authorize/ProtectedRoute";
 import BookingConfirmation from "./components/booking/container/booking-vnpay/BookingConfirmation";
 import PaymentReturn from "./components/booking/container/payment-return/PaymentReturn";
+import CashReturn from "./components/booking/container/payment-return/CashReturn";
 
 function App() {
   const location = useLocation();
@@ -27,9 +28,11 @@ function App() {
   const isSignUpUser = location.pathname === "/signUpUser";
   const isSignUpShop = location.pathname === "/signUpShop";
   const isForgotPass = location.pathname === "/forgotPassword";
+  const isCashReturn = location.pathname === "/cash-payment";
+  const isPaymentReturn = location.pathname === "/api/Booking/payment-return";
   return (
     <AuthProvider>
-      {!(isLoginPage || isSignUpUser || isSignUpShop || isForgotPass) && (
+      {!(isLoginPage || isSignUpUser || isSignUpShop || isForgotPass || isPaymentReturn || isCashReturn) && (
         <Header />
       )}
       <Routes>
@@ -84,9 +87,11 @@ function App() {
           }
         />
 
-        <Route path="/payment-return" element={<PaymentReturn />} />
+        <Route path="/cash-payment" element={<CashReturn />} />
+
+        <Route path="/api/Booking/payment-return" element={<PaymentReturn />} />
       </Routes>
-      {!(isLoginPage || isSignUpUser || isSignUpShop || isForgotPass) && (
+      {!(isLoginPage || isSignUpUser || isSignUpShop || isForgotPass || isPaymentReturn || isCashReturn) && (
         <Footer />
       )}
     </AuthProvider>

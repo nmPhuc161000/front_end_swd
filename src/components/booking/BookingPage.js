@@ -65,7 +65,7 @@ export default function BookingPage() {
       if(response?.data?.data?.optionPay === "PayByWalletCard") {
         navigate("/checkout");
       } else if(response?.data?.data?.optionPay === "CashPayment") {
-        navigate(`/detail/${serviceId}`);
+        navigate(`/cash-payment`);
       }
     } catch (error) {
       console.error("Error:", error);
