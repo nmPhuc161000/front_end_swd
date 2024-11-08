@@ -15,7 +15,6 @@ import ServicesPage from "./components/services/ServicesPage";
 import ForgotPass from "./components/auth/forgot-password/ForgotPass";
 import BookingPage from "./components/booking/BookingPage";
 import { AuthProvider } from "./authorize/AuthContext";
-import ProtectedRoute from "./authorize/ProtectedRoute";
 import BookingConfirmation from "./components/booking/container/booking-vnpay/BookingConfirmation";
 import PaymentReturn from "./components/booking/container/payment-return/PaymentReturn";
 import CashReturn from "./components/booking/container/payment-return/CashReturn";
