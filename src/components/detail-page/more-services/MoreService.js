@@ -8,8 +8,6 @@ export default function MoreService({ moreData }) {
   const [moreItem, setMoreItem] = useState([]);
   const userId = moreData.id;
   const fullName = moreData.fullName;
-  console.log(moreData);
-  
 
   useEffect(() => {
     const data = async () => {
@@ -31,7 +29,7 @@ export default function MoreService({ moreData }) {
       {Array.isArray(moreItem) &&
         moreItem.map((item) => (
           <Link to={`/detail/${item.id}`} key={item.id}>
-            <CardHome item={item} fullName={fullName}/>
+            <CardHome item={item} fullName={fullName} />
           </Link>
         ))}
     </>

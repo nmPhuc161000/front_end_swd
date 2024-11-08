@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import urlApi from "../../../api/configApi";
 import Swal from "sweetalert2";
-import { signUpShop } from "../../../api/testApi";
+import { signUpShop, verifyEmail } from "../../../api/testApi";
 
 export default function SignUpShop() {
   const [fullName, setFullName] = useState("");
@@ -111,19 +111,15 @@ export default function SignUpShop() {
           confirmButtonText: "Submit OTP",
         }).then(async (result) => {
           if (result.isConfirmed) {
-            const otpCode = result.value;
+            const otp = result.value;
+
+            const dataOTP = {
+              otp: otp,
+              email: email
+            }
 
             try {
-              const otpResponse = await axios.post(
-                `${urlApi}/api/Auth/user/otp/verify`,
-                { otp: otpCode, email },
-                {
-                  headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json, text/plain, */*",
-                  },
-                }
-              );
+              const otpResponse = await verifyEmail(dataOTP);
 
               if (otpResponse && otpResponse.data) {
                 // Kiểm tra otpResponse và otpResponse.data

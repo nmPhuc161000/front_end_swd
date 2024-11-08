@@ -1,0 +1,160 @@
+/* BookingPage.css */
+
+/* Container chính cho trang booking */
+.booking-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+.booking-left {
+  width: 58%;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.booking-right {
+  width: 35%;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2, h3, h4 {
+  color: #333;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Chi tiết chuyến đi */
+.trip-details {
+  margin-bottom: 20px;
+}
+
+.trip-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.trip-date, .trip-guests {
+  margin-bottom: 10px;
+}
+
+.trip-date label, .trip-guests label {
+  font-weight: bold;
+  color: #666;
+}
+
+/* Phương thức booking */
+.booking-method {
+  margin-top: 20px;
+}
+
+.booking-options {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.booking-option {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.booking-option.active {
+  background-color: #4CAF50;
+  color: #fff;
+  border-color: #4CAF50;
+}
+
+/* Form thẻ tín dụng */
+.credit-card-form label {
+  display: block;
+  margin-top: 10px;
+  color: #666;
+}
+
+.credit-card-form input, .credit-card-form select {
+  width: 80%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.card-details {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.confirm-button {
+  margin-top: 15px;
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.confirm-button:hover {
+  background-color: #45a049;
+}
+
+/* Phần bên phải: chi tiết phòng */
+.room-details {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.room-details img {
+  width: 70%;
+  border-radius: 8px;
+}
+
+.room-details h4 {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.room-details p {
+  color: #777;
+}
+
+.price-details p {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.price-details strong {
+  color: #333;
+  font-size: 18px;
+}

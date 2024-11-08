@@ -6,6 +6,7 @@ import { getServiceById } from "../../api/testApi";
 
 export default function DetailPage() {
   const { id } = useParams();
+  localStorage.setItem("serviceId", id);
   const [itemDetail, setItemDetail] = useState(null);
   const moreData =
     itemDetail && itemDetail.createdByUser ? itemDetail.createdByUser : "";

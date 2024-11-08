@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./ShopService.css";
-import urlApi from "../../../../api/configApi";
 import CreateService from "./create-services/CreateService";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { getListServicesByUserId } from "../../../../api/testApi";
 
 export default function ShopService() {
@@ -11,6 +9,7 @@ export default function ShopService() {
   const [isCreate, setIsCreate] = useState(false);
   const userId = localStorage.getItem("userId") || "";
   const token = localStorage.getItem("token");
+  const full_name = localStorage.getItem("full_name")
 
   useEffect(() => {
     const serviceData = async () => {
@@ -67,7 +66,7 @@ export default function ShopService() {
                   >
                     <div className="cardImg">
                       <img
-                        src={item.url_Image}
+                        src={item.thumbNail}
                         alt=""
                         style={{
                           height: "95%",
@@ -86,7 +85,7 @@ export default function ShopService() {
                         <div>
                           By{" "}
                           <span style={{ fontWeight: "bold" }}>
-                            {item.nick_Name}
+                            {full_name}
                           </span>
                         </div>
                       </div>

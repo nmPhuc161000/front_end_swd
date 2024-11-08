@@ -1,0 +1,98 @@
+/* BookingConfirmation.css */
+
+.booking-confirm {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+  
+  .booking-confirm-container {
+    background-color: #fff;
+    padding: 24px;
+    width: 490px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .booking-confirm-container h1 {
+    font-size: 24px;
+    margin: 0;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+  
+  .booking-confirm-container h1 span {
+    margin-left: 8px;
+  }
+  
+  .booking-section {
+    margin-top: 20px;
+  }
+  
+  .booking-header {
+    display: flex;
+    align-items: center;
+  }
+  
+  .booking-header img {
+    width: 110px;
+    height: 110px;
+    border-radius: 8px;
+    margin-right: 16px;
+  }
+  
+  .booking-info {
+    font-size: 14px;
+  }
+  
+  .booking-info h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .rating {
+    color: #FF5A5F;
+    font-size: 14px;
+  }
+  
+  .date-guests {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    margin-top: 16px;
+    font-size: 14px;
+  }
+  
+  .booking-detail {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  
+  .booking-detail div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  
+  .explore-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    background-color: #5B53F6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    text-decoration: none;
+    margin-top: 16px;
+  }
+  

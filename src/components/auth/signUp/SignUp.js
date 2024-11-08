@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 import urlApi from "../../../api/configApi";
+import { signUpUser, verifyEmail } from "../../../api/testApi";
 
 export default function SignUp() {
   const [fullName, setFullName] = useState("");
@@ -61,16 +62,8 @@ export default function SignUp() {
 
     try {
       // Gửi yêu cầu POST đến API
-      const response = await axios.post(
-        `${urlApi}/api/Auth/user/register/user`,
-        data,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Accept: "*/*",
-          },
-        }
-      );
+      const response = await signUpUser(data);
+      
       Swal.fire({
         icon: "success",
         title: "Success!",
@@ -86,24 +79,16 @@ export default function SignUp() {
         confirmButtonText: "Submit OTP",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          const otpCode = result.value;
+          const otp = result.value;
+
+          const dataOTP = {
+            otp: otp,
+            email: email
+          }
 
           // Gọi API để xác thực OTP
           try {
-            const otpResponse = await axios.post(
-              `${urlApi}/api/Auth/user/otp/verify`,
-              {
-                otp: otpCode,
-                email: email, // Thêm các dữ liệu cần thiết, ví dụ: email
-              },
-              {
-                headers: {
-                  "Content-Type": `application/json`,
-                  Accept: "application/json, text/plain, */*",
-                },
-              }
-            );
-            console.log("abc: ", otpResponse.data);
+            const otpResponse = await verifyEmail(dataOTP);
 
             Swal.fire({
               icon: "success",

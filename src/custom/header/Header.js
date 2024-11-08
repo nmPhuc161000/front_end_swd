@@ -19,6 +19,9 @@ export default function Navbar() {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
     localStorage.removeItem("full_name");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("bookingId");
+    localStorage.removeItem("serviceId");
     setIsLoggedIn(false);
     setShowUserMenu(false);
     navigate("/"); // Chuyển hướng về trang Home

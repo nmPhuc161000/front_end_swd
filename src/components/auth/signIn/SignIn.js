@@ -1,11 +1,8 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import urlApi from "../../../api/configApi";
 import Swal from "sweetalert2";
 import { jwtDecode } from "jwt-decode";
-import Stack from "@mui/material/Stack";
-import CircularProgress from "@mui/material/CircularProgress";
+import { login } from "../../../api/testApi";
 
 export default function SignIn() {
   const [emali, setEmail] = useState("");
@@ -13,6 +10,7 @@ export default function SignIn() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [inputType, setInputType] = useState("password");
+  const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
     setEmail(event);
@@ -26,8 +24,6 @@ export default function SignIn() {
   const togglePasswordVisibility = () => {
     setInputType(inputType === "password" ? "text" : "password");
   };
-
-  const navigate = useNavigate();
 
   const handleSave = async () => {
     if (!emali || !password) {
@@ -47,16 +43,12 @@ export default function SignIn() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post(`${urlApi}/api/Auth/user/login`, data, {
-        headers: {
-          "Content-Type": `application/json`,
-          Accept: "*/*",
-        },
-      });
+      const response = await login(data);
+
       Swal.fire({
         icon: "success",
         title: "Login success!",
-        text: "login",
+        text: response?.data?.message || "Successfully",
       });
 
       console.log("Data: ", response);
@@ -90,7 +82,15 @@ export default function SignIn() {
       }
       console.log("Data: ", response);
     } catch (error) {
-      const errorMessage = JSON.parse(error.request.response).message;
+      let errorMessage = "An unknown error occurred.";
+
+      try {
+        const parsedResponse = JSON.parse(error.request.response);
+        errorMessage = parsedResponse.message || errorMessage;
+      } catch (parseError) {
+        console.error("Error parsing JSON response:", parseError);
+      }
+      
       Swal.fire({
         icon: "error",
         title: "Please check your input!!!",
@@ -148,6 +148,12 @@ export default function SignIn() {
           <h6>Are you have account?</h6>
           <Link to={`/signUpUser`} style={{ color: "#37AFE1" }}>
             Register now
+          </Link>
+        </div>
+        <div className="loginIn">
+          <h6>Forgot password?</h6>
+          <Link to={`/forgotPassword`} style={{ color: "#37AFE1" }}>
+            Here
           </Link>
         </div>
       </div>

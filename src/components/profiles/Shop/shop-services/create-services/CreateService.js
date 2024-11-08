@@ -8,7 +8,7 @@ import Select from "@mui/material/Select";
 import { getSubCatergoy, postCreateService } from "../../../../../api/testApi";
 import Swal from "sweetalert2";
 
-export default function CreateService() {
+export default function CreateService({onCreate}) {
   const [name, setName] = useState("");
   const [subCategory, setSubCategory] = useState("");
   const [type, setType] = useState("");
@@ -117,6 +117,7 @@ export default function CreateService() {
       });
       navigate("/shopProfile/shop");
       setIsPopupOpen(false);
+      onCreate(response.data);
     } catch (error) {
       // Xử lý lỗi
       alert("Hãy kiểm tra lại thông tin nhập vào!");
