@@ -5,7 +5,7 @@ export const CardHome = ({ item, fullName }) => {
   return (
     <div className="cardHome">
       <div className="cardImg" style={{ height: "75%", width: "100%" }}>
-        <img src={item.thumbNail} style={{ height: "100%", width: "100%" }} alt=''/>
+        <img src={item.thumbNail} style={{ height: "100%", width: "100%" }} alt='' />
       </div>
       <div className="cardInfor">
         <div className="cardName">
